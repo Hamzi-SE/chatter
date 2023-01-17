@@ -1,0 +1,19 @@
+/* .user-friends-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 75vw;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.user-friends-image {
+    max-width: 300px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    cursor: pointer;
+} */

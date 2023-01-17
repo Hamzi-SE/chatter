@@ -1,0 +1,24 @@
+/* Addtional styles */
+.about-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 0.3rem solid #007bff;
+    padding-bottom: 3px;
+}
+
+.about-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.about-friends {
+    margin-top: 2rem;
+}
+
+.user-card {
+    text-align: center;
+}
+
