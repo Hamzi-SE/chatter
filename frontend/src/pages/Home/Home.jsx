@@ -7,6 +7,7 @@ import UserCard from '../../components/UserCard/UserCard';
 import Pagination from "react-js-pagination"
 import { callProfile } from '../../helpers/CallProfile';
 import "./home.css"
+import customFetch from '../../helpers/api';
 
 const Home = () => {
 
@@ -30,7 +31,7 @@ const Home = () => {
             if (search) {
                 link += `&keyword=${search}`;
             }
-            const res = await fetch(link, {
+            const res = await customFetch(link, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ const Home = () => {
         e.preventDefault();
         dispatch({ type: "LOAD_USERS_REQUEST" })
         try {
-            const res = await fetch(`/api/v1/users?keyword=${search}`, {
+            const res = await customFetch(`/api/v1/users?keyword=${search}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ const Home = () => {
     const createConversation = async (receiver) => {
         dispatch({ type: "CREATE_CONVERSATION_REQUEST" })
         try {
-            const res = await fetch('/api/v1/conversation', {
+            const res = await customFetch('/api/v1/conversation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,7 +119,7 @@ const Home = () => {
     const addFriend = async (userId) => {
         // dispatch({ type: "ADD_FRIEND_REQUEST" })
         try {
-            const res = await fetch(`/api/v1/user/addFriend`, {
+            const res = await customFetch(`/api/v1/user/addFriend`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

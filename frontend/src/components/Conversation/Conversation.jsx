@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import "./conversation.css"
+import customFetch from '../../helpers/api';
 
 const Conversation = ({ conversation, currentUser, onlineStatus }) => {
     const [user, setUser] = useState(null);
@@ -9,7 +10,7 @@ const Conversation = ({ conversation, currentUser, onlineStatus }) => {
         const friendId = conversation.members.find(member => member !== currentUser?._id);
         const getUser = async () => {
             try {
-                const res = await fetch(`api/v1/user/${friendId}`, {
+                const res = await customFetch(`/api/v1/user/${friendId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

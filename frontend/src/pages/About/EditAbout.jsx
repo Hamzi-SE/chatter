@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Vortex } from "react-loader-spinner";
 import { callProfile } from "../../helpers/CallProfile"
+import customFetch from "../../helpers/api";
 
 const EditProfille = () => {
     // const { loading } = useSelector(state => state.profile);
@@ -38,7 +39,7 @@ const EditProfille = () => {
         setUpdating(true);
         dispatch({ type: "UPDATE_PROFILE_REQUEST" });
         const { name, about, gender, email } = userDetails;
-        const res = await fetch("/api/v1/me/update", {
+        const res = await customFetch("/api/v1/me/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

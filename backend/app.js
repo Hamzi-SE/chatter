@@ -4,21 +4,23 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const errorMiddleware = require("./middleware/error");
 const { createServer } = require('http');
+require("dotenv").config({ path: "config/config.env" });
+const cors = require('cors');
 
 const socketServer = createServer(app);
 
-socketServer.listen(8080, (err) => {
+socketServer.listen(process.env.SOCKET_PORT, (err) => {
     if (err) {
         console.log(err);
     } else {
-        console.log('Socket server listening on port 8080');
+        console.log(`Socket server is running on port ${process.env.SOCKET_PORT}`);
     }
 });
 
 
 const io = require('socket.io')(socketServer, {
     cors: {
-        origin: "http://localhost:3001",
+        origin: process.env.FRONTEND_URL || "http://localhost:3000",
         methods: ["*"],
     },
 });
@@ -92,6 +94,11 @@ app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+}));
 
 
 // Route Imports

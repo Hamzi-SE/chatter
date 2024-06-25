@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import "./singleUser.css"
+import customFetch from '../../helpers/api'
 
 const SingleUser = () => {
 
@@ -15,7 +16,7 @@ const SingleUser = () => {
 
 
     const getUserDetails = async () => {
-        const res = await fetch(`/api/v1/user/${id}`, {
+        const res = await customFetch(`/api/v1/user/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +40,7 @@ const SingleUser = () => {
     const createConversation = async (receiver) => {
         dispatch({ type: "CREATE_CONVERSATION_REQUEST" })
         try {
-            const res = await fetch('/api/v1/conversation', {
+            const res = await customFetch('/api/v1/conversation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

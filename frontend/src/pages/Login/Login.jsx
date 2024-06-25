@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import customFetch from '../../helpers/api';
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -14,7 +15,7 @@ const Login = () => {
         e.preventDefault();
 
         dispatch({ type: 'LOGIN_USER_REQUEST' })
-        const res = await fetch("/api/v1/user/login", {
+        const res = await customFetch("/api/v1/user/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

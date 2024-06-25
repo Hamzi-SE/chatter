@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import "./signup.css"
+import customFetch from '../../helpers/api';
 
 const Signup = () => {
 
@@ -21,7 +22,7 @@ const Signup = () => {
         e.preventDefault();
         dispatch({ type: "SIGNUP_USER_REQUEST" });
 
-        const res = await fetch("/api/v1/user/register", {
+        const res = await customFetch("/api/v1/user/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

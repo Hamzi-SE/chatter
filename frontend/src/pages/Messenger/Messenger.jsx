@@ -9,6 +9,7 @@ import { socket } from '../../helpers/SocketConnect';
 import "./messenger.css"
 import { Navigate } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
+import customFetch from '../../helpers/api';
 
 const Messenger = () => {
     const [conversations, setConversations] = useState([])
@@ -89,7 +90,7 @@ const Messenger = () => {
 
         try {
             setMsgSending(true);
-            const res = await fetch("/api/v1/message", {
+            const res = await customFetch("/api/v1/message", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -111,7 +112,7 @@ const Messenger = () => {
         const getConversations = async () => {
             dispatch({ type: "GET_ALL_CONVERSATIONS_REQUEST" })
             try {
-                const res = await fetch(`api/v1/conversations/${user?._id}`, {
+                const res = await customFetch(`/api/v1/conversations/${user?._id}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -134,7 +135,7 @@ const Messenger = () => {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await fetch(`api/v1/messages/${currentChat?._id}`, {
+                const res = await customFetch(`/api/v1/messages/${currentChat?._id}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
