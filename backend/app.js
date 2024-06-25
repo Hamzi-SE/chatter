@@ -18,7 +18,7 @@ socketServer.listen(8080, (err) => {
 
 const io = require('socket.io')(socketServer, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://localhost:3001",
         methods: ["*"],
     },
 });
